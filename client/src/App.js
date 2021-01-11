@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import Homepage from './views/homepage/Homepage';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

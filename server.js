@@ -1,10 +1,25 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Put all API endpoints under '/api'
+app.get('/api/frame/list', (req, res) => {
+  var bitmap1 = fs.readFileSync('./uploads/frame/1.png');
+
+  var frameList = [
+    {
+      name: "Frame 1",
+      dataUri: "data:image/png;base64, " + Buffer.from(bitmap1).toString('base64'),
+    }
+  ];
+
+  res.json(frameList);
+});
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
@@ -15,4 +30,4 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 5000;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+console.log(`Server listening on ${port}`);

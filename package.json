@@ -4,10 +4,13 @@
   "main": "server.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "prettier": "^2.2.1"
   },
   "scripts": {
     "start": "node server.js",
+    "prettier": "./node_modules/.bin/prettier --single-quote=true --write {,!(node_modules)/**/}*.{js,json,css,html}",
     "heroku-postbuild": "cd client && npm install && npm run build"
-  }
+  },
+  "private": true
 }
